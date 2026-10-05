@@ -1,0 +1,42 @@
+{
+  "name": "memtory",
+  "version": "0.1.0",
+  "description": "The project manager for your AI coding agents. CLI and MCP server.",
+  "mcpName": "com.memtory/memtory",
+  "type": "module",
+  "bin": {
+    "memtory": "bin/memtory.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "facts.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.0"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "claude-code",
+    "ai-agents",
+    "project-management",
+    "backlog",
+    "roadmap"
+  ],
+  "homepage": "https://memtory.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/memtoryhq/memtory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/memtoryhq/memtory/issues"
+  },
+  "license": "MIT"
+}
