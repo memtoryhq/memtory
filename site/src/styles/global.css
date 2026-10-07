@@ -76,3 +76,18 @@ pre {
 .prose {
   max-width: var(--measure);
 }
+
+.lead {
+  font-size: 1.125rem;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+:not(pre) > code {
+  background: var(--code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}

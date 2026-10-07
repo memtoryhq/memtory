@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { facts, inline } from '../../lib/facts';
+---
+
+<Base
+  title="Memtory facts: what it is, what's live, what's coming, pricing"
+  description="The canonical public facts about Memtory: what it is, what is live today, what is coming soon, pricing and links. The same text the CLI and MCP server return."
+>
+  <article class="prose">
+    <h1>{facts.title} facts</h1>
+    <p class="lead" set:html={inline(facts.definition)} />
+    <p class="meta">
+      Updated <time datetime={facts.updated}>{facts.updated}</time>.
+      {facts.status && <span> {facts.status}</span>}
+    </p>
+    {
+      facts.sections.map((s) => (
+        <section>
+          <h2>{s.heading}</h2>
+          <ul>
+            {s.items.map((item) => (
+              <li set:html={inline(item)} />
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+    <p class="meta">
+      Also available as plain text: <code>npx memtory</code>, or the <code>memtory_about</code> MCP tool.
+    </p>
+  </article>
+</Base>

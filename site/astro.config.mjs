@@ -7,4 +7,6 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
   build: { format: 'directory' },
+  // The site renders ../facts.md, which sits outside the Astro root.
+  vite: { server: { fs: { allow: ['..'] } } },
 });
