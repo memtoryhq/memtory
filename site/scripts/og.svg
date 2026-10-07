@@ -1,0 +1,13 @@
+<!-- Source for public/og.png (1200×630), the default social card. Neutral on
+     purpose until there is a brand. Re-render it with any SVG-to-PNG tool at
+     exactly 1200×630 (e.g. a headless browser screenshot). -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fbfaf7"/>
+  <rect x="80" y="80" width="12" height="470" fill="#3b5bdb"/>
+  <text x="130" y="190" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#5f5b53">memtory.com</text>
+  <text font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#1c1b19">
+    <tspan x="130" y="320">The project manager for</tspan>
+    <tspan x="130" y="410">your AI coding agents</tspan>
+  </text>
+  <text x="130" y="520" font-family="Menlo, monospace" font-size="34" fill="#5f5b53">npx memtory</text>
+</svg>

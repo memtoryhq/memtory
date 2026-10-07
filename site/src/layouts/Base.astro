@@ -1,12 +1,30 @@
 ---
 import '../styles/global.css';
+import { facts } from '../lib/facts';
+import { SITE, jsonLd, type Crumb } from '../lib/seo';
 
 interface Props {
   title: string;
   description: string;
+  /** Trail below Home, e.g. [{ name: 'Facts', path: '/facts/' }]. Required on subpages. */
+  breadcrumbs?: Crumb[];
+  /** Adds SoftwareApplication + offers (home and /pricing only). */
+  software?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, breadcrumbs, software = false } = Astro.props;
+
+if (!title?.trim() || !description?.trim()) {
+  throw new Error(`${Astro.url.pathname}: every page needs a title and a description`);
+}
+if (Astro.url.pathname !== '/' && !breadcrumbs?.length) {
+  throw new Error(`${Astro.url.pathname}: subpages need breadcrumbs`);
+}
+
+// Self-referencing canonical, always with a trailing slash (build.format is 'directory').
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(path, SITE).href;
+const ogImage = new URL('/og.png', SITE).href;
 ---
 
 <!doctype html>
@@ -16,10 +34,33 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Memtory" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Memtory: the project manager for your AI coding agents" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={jsonLd({ breadcrumbs, software })} />
   </head>
   <body>
+    <header class="wrap site-header">
+      <a class="brand" href="/">Memtory</a>
+      <nav aria-label="Main">
+        <a href="/facts/">Facts</a>
+      </nav>
+    </header>
     <main class="wrap">
       <slot />
     </main>
+    <footer class="wrap site-footer">
+      <p>Updated <time datetime={facts.updated}>{facts.updated}</time>.</p>
+    </footer>
   </body>
 </html>
