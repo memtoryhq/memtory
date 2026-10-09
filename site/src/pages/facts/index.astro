@@ -1,12 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { facts, inline } from '../../lib/facts';
+import { pages } from '../../lib/pages';
 ---
 
 <Base
-  title="Memtory facts: what it is, what's live, what's coming, pricing"
-  breadcrumbs={[{ name: 'Facts', path: '/facts/' }]}
-  description="The canonical public facts about Memtory: what it is, what is live today, what is coming soon, pricing and links. The same text the CLI and MCP server return."
+  title={pages.facts.title}
+  breadcrumbs={[{ name: 'Facts', path: pages.facts.path }]}
+  description={pages.facts.description}
 >
   <article class="prose">
     <h1>{facts.title} facts</h1>
